@@ -1,0 +1,35 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="particles">
+    <span class="particle particle-1" [@particleFloat]></span>
+    <span class="particle particle-2" [@particleFloat]></span>
+    <span class="particle particle-3" [@particleFloat]></span>
+  </div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 hero-content">
+        <h1 class="hero-title" [@fadeIn]>Elevate with Lumicoin</h1>
+        <p class="hero-subtitle" [@fadeIn]>A modern platform designed to inspire and empower your journey.</p>
+        <a
+          href="#"
+          class="btn neon-btn"
+          [@buttonPop]
+          [@buttonHover]="isButtonHovered ? 'hovered' : 'normal'"
+          (mouseenter)="toggleButtonHover(true)"
+          (mouseleave)="toggleButtonHover(false)"
+        >Explore Now</a>
+      </div>
+      <div class="col-lg-6 hero-image-wrapper">
+        <img
+          src="assets\Futuristic_Black_Gem-removebg-preview.png"
+          alt="Abstract Art"
+          class="hero-image"
+          [@imageScale]
+          [@imageHover]="isImageHovered ? 'hovered' : 'normal'"
+          (mouseenter)="toggleImageHover(true)"
+          (mouseleave)="toggleImageHover(false)"
+        />
+      </div>
+    </div>
+  </div>
+</section>
