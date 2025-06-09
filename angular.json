@@ -27,7 +27,8 @@
               },
               "src/assets",
               
-  "src/robots.txt"
+  "src/robots.txt",
+              "src/google843fed4fa194535a.html"
             ],
             "styles": [
               "src/styles.css",
