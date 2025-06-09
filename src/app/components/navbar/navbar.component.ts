@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, FormsModule, CommonModule, RouterLinkActive],
+  imports: [RouterLink, FormsModule, CommonModule, RouterLinkActive, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
   animations: [

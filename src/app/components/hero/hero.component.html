@@ -1,35 +1,24 @@
-<section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="particles">
-    <span class="particle particle-1" [@particleFloat]></span>
-    <span class="particle particle-2" [@particleFloat]></span>
-    <span class="particle particle-3" [@particleFloat]></span>
-  </div>
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 hero-content">
-        <h1 class="hero-title" [@fadeIn]>Elevate with Lumicoin</h1>
-        <p class="hero-subtitle" [@fadeIn]>A modern platform designed to inspire and empower your journey.</p>
-        <a
-          href="#"
-          class="btn neon-btn"
-          [@buttonPop]
-          [@buttonHover]="isButtonHovered ? 'hovered' : 'normal'"
-          (mouseenter)="toggleButtonHover(true)"
-          (mouseleave)="toggleButtonHover(false)"
-        >Explore Now</a>
-      </div>
-      <div class="col-lg-6 hero-image-wrapper">
-        <img
-          src="assets\Futuristic_Black_Gem-removebg-preview.png"
-          alt="Abstract Art"
-          class="hero-image"
-          [@imageScale]
-          [@imageHover]="isImageHovered ? 'hovered' : 'normal'"
-          (mouseenter)="toggleImageHover(true)"
-          (mouseleave)="toggleImageHover(false)"
-        />
-      </div>
+<section class="hero-section">
+  <div class="hero-glass"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Real-time <span class="highlight">crypto</span> intelligence<br />
+      for <span class="italic">smart investors.</span>
+    </h1>
+    <p class="hero-subtitle">
+      LumiCoin unifies live prices, analytics, and news into one dashboard.<br />
+      Track, analyze, and stay ahead in real time.
+    </p>
+    <div class="hero-actions">
+      <a href="#trending" class="hero-btn primary">Explore Coins</a>
+      <a href="#news" class="hero-btn secondary">See News</a>
+    </div>
+    <div class="hero-image-wrapper">
+      <img
+        src="/assets/LumicoinILL.svg"
+        alt="Crypto dashboard illustration"
+        class="hero-image"
+      />
     </div>
   </div>
 </section>

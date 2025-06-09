@@ -1,0 +1,221 @@
+body, :host {
+  background: #0a0a0a !important;
+  min-height: 100vh;
+ 
+  display: block;
+}
+
+.coin-details-section {
+  background: #0a0a0a;
+  color: #f3f3f3;
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px #0008;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: #18171c;
+  color: #a259ff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-family: 'Clash Display', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  z-index: 2;
+}
+.back-btn:hover {
+  background: #232323;
+  color: #fff;
+}
+
+.coin-details-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.coin-details-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #18171c;
+  border: 2px solid #232323;
+}
+
+.coin-details-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.coin-details-rank {
+  color: #a259ff;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.coin-details-link {
+  color: #7ee787;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+  transition: color 0.2s;
+}
+.coin-details-link:hover {
+  color: #fff;
+}
+
+.coin-details-info {
+  margin-top: 2rem;
+}
+
+.coin-details-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-label {
+  color: #bdbdbd;
+  font-size: 1rem;
+  display: block;
+}
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+.stat-value.up { color: #7ee787; }
+.stat-value.down { color: #ff6b6b; }
+
+.coin-details-chart {
+  background: #18171c;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px #0006;
+}
+
+.coin-details-desc {
+  margin-top: 2rem;
+  background: #18171c;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 12px #0006;
+}
+.coin-details-desc h3 {
+  margin-top: 0;
+  color: #a259ff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.coin-details-loading {
+  color: #bdbdbd;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+@media (max-width: 700px) {
+  .coin-details-section {
+    padding: 1.2rem 0.5rem;
+  }
+  .coin-details-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .coin-details-logo {
+    margin-bottom: 1rem;
+  }
+  .back-btn {
+    position: static;
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+    display: block;
+    width: 100%;
+    max-width: 120px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .coin-details-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: left;
+  }
+  .coin-details-chart,
+  .coin-details-desc {
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Optional: Make the back button always visible at the top on mobile */
+@media (max-width: 500px) {
+  .back-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    max-width: 100%;
+  }
+}
+
+
+/* From Uiverse.io by Nawsome */ 
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  width: 100%;
+}
+
+.load {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  height: 80px; /* Increase for bigger loader */
+}
+
+.loader__bar {
+  width: 12px;
+  height: 40px;
+  background: #a259ff;
+  margin: 0 2px;
+  border-radius: 6px;
+  animation: loaderBarAnim 1s infinite alternate;
+}
+
+.loader__bar:nth-child(2) { animation-delay: 0.1s; }
+.loader__bar:nth-child(3) { animation-delay: 0.2s; }
+.loader__bar:nth-child(4) { animation-delay: 0.3s; }
+.loader__bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes loaderBarAnim {
+  0% { height: 40px; opacity: 0.7; }
+  100% { height: 80px; opacity: 1; }
+}
+
+.loader__ball {
+  width: 18px;
+  height: 18px;
+  background:#0a0a0a;
+  border-radius: 50%;
+  margin-left: 10px;
+  animation: loaderBallAnim 1s infinite alternate;
+}
+
+@keyframes loaderBallAnim {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-40px); }
+}

@@ -1,0 +1,35 @@
+<section class="exchange-detail-section">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+  <div class="container">
+    <div *ngIf="exchange; else loadingTpl">
+      <div class="exchange-detail-card">
+        <div class="exchange-detail-header">
+          <img [src]="exchange.image" [alt]="exchange.name" class="exchange-detail-logo" />
+          <div class="exchange-detail-meta">
+            <h2 class="exchange-detail-title">{{ exchange.name }}</h2>
+            <div class="exchange-detail-tags">
+              <span *ngIf="exchange.country" class="exchange-detail-country">🌍 {{ exchange.country }}</span>
+              <span *ngIf="exchange.year_established" class="exchange-detail-year">Since {{ exchange.year_established }}</span>
+            </div>
+            <a [href]="exchange.url" target="_blank" rel="noopener" class="exchange-detail-link">Visit Exchange →</a>
+          </div>
+        </div>
+        <div class="exchange-detail-stats">
+          <span class="exchange-detail-rank">Rank: #{{ exchange.trust_score_rank }}</span>
+          <span class="exchange-detail-volume">24h Vol: ${{ exchange.trade_volume_24h_btc | number:'1.0-0' }} BTC</span>
+          <span class="exchange-detail-score">Trust Score: {{ exchange.trust_score }}</span>
+        </div>
+        <div class="exchange-detail-desc" *ngIf="exchange?.description">
+          <h3>About</h3>
+          <div [innerHTML]="exchange.description"></div>
+        </div>
+      </div>
+    </div>
+    <ng-template #loadingTpl>
+      <div class="exchange-detail-loading">
+        <div class="loader"></div>
+        Loading exchange details...
+      </div>
+    </ng-template>
+  </div>
+</section>

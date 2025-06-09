@@ -1,0 +1,20 @@
+<section class="news-section" id="news">
+  <div class="news-container">
+    <h3 class="news-title">📰 Latest Crypto News</h3>
+    <div class="news-list" *ngIf="news?.length; else loadingTpl">
+      <div class="news-card" *ngFor="let item of news">
+        <a [href]="item.url" target="_blank" rel="noopener" class="news-link">
+          <img *ngIf="item.image" [src]="item.image" [alt]="item.title" class="news-image" />
+          <h4 class="news-headline">{{ item.title }}</h4>
+          <p class="news-source">
+            {{ item.source }} &middot; {{ item.published_at | date:'mediumDate' }}
+          </p>
+          <p class="news-summary">{{ item.summary }}</p>
+        </a>
+      </div>
+    </div>
+    <ng-template #loadingTpl>
+      <div class="news-loading">Loading news...</div>
+    </ng-template>
+  </div>
+</section>

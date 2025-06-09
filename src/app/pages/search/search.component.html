@@ -1,0 +1,36 @@
+<section class="search-section">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="onSearch()"
+      placeholder=" Search for a coin (e.g., Bitcoin, BTC)"
+      class="search-input"
+      autofocus
+    />
+    <button (click)="onSearch()" class="search-btn">Search</button>
+  </div>
+
+  <div *ngIf="searching" class="search-loader">
+    <div class="loader"></div>
+    Searching...
+  </div>
+
+  <div *ngIf="searchResults.length" class="search-results-list">
+    <div class="search-result-card" *ngFor="let coin of searchResults">
+      <img [src]="coin.thumb" [alt]="coin.name" class="search-result-logo" />
+      <div class="search-result-meta">
+        <div class="search-result-name">
+          {{ coin.name }}
+          <span class="search-result-symbol">({{ coin.symbol | uppercase }})</span>
+        </div>
+        <a [routerLink]="['/coin', coin.id]" class="search-result-link">View Details →</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!searching && searchResults && !searchResults.length && searchTerm" class="search-no-results">
+    <span>😕 No results found.</span>
+  </div>
+</section>

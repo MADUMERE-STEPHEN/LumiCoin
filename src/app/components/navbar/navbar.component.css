@@ -1,11 +1,11 @@
 .navbar {
-  background: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
   padding: 0.8rem 1.5rem;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
   z-index: 1000;
+
+  background-color: #0a0a0a;
+  z-index: 10;
 }
 
 .navbar-brand.neon-text {
@@ -118,6 +118,11 @@
 
   .navbar-nav {
     align-items: center;
+  }
+
+  .navbar{
+    
+  border-bottom: 1px solid rgba(168, 85, 247, 0.302);
   }
 
   .nav-link.neon-text {

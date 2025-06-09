@@ -1,6 +1,40 @@
-body{
-    
-  background-color: #121212;
-  color: #e2e8f0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.custom-alert {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d1a2e;
+  color: #fff;
+  padding: 1rem 2.5rem 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px #000a;
+  z-index: 9999;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  border: 2px solid #a259ff;
+  min-width: 260px;
+  max-width: 90vw;
+}
+.custom-alert.error {
+  border-color: #ff4d4f;
+  background: #2a1517;
+}
+.custom-alert.info {
+  border-color: #a259ff;
+  background: #18171c;
+}
+.close-alert {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.close-alert:hover {
+  opacity: 1;
 }

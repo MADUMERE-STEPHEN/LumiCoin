@@ -1,2 +1,7 @@
 <app-navbar></app-navbar>
-<app-hero></app-hero>
+<div *ngIf="alertMessage" class="custom-alert" [ngClass]="{'error': alertType === 'error', 'info': alertType === 'info'}">
+  {{ alertMessage }}
+  <button class="close-alert" (click)="closeAlert()">×</button>
+</div>
+<router-outlet></router-outlet>
+<app-news></app-news>

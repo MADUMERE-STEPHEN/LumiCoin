@@ -1,0 +1,18 @@
+<section class="categories-section">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+  <div class="container">
+    <h2 class="categories-title">📂 Coin Categories</h2>
+    <div class="categories-list" *ngIf="categories?.length; else loadingTpl">
+      <div class="category-card" *ngFor="let cat of categories">
+        <div class="category-info">
+          <h3 class="category-name">{{ cat.name }}</h3>
+          <p class="category-id">ID: {{ cat.category_id }}</p>
+        </div>
+        <a [routerLink]="['/categories', cat.category_id]" class="category-link">View Coins →</a>
+      </div>
+    </div>
+    <ng-template #loadingTpl>
+      <div class="categories-loading">Loading categories...</div>
+    </ng-template>
+  </div>
+</section>

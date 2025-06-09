@@ -1,0 +1,27 @@
+<section class="exchanges-section">
+    
+  <button class="back-btn" (click)="goBack()">← Back</button>
+  <div class="container">
+    <h2 class="exchanges-title"> Top Crypto Exchanges</h2>
+    <div class="exchanges-list" *ngIf="exchanges?.length; else loadingTpl">
+      <div class="exchange-card" *ngFor="let ex of exchanges">
+        <div class="exchange-info">
+          <img [src]="ex.image" [alt]="ex.name" class="exchange-logo" />
+          <div>
+            <h3 class="exchange-name">{{ ex.name }}</h3>
+            <p class="exchange-country" *ngIf="ex.country">🌍 {{ ex.country }}</p>
+            <p class="exchange-year" *ngIf="ex.year_established">Since {{ ex.year_established }}</p>
+          </div>
+        </div>
+        <div class="exchange-stats">
+          <span class="exchange-rank">Rank: #{{ ex.trust_score_rank }}</span>
+          <span class="exchange-volume">24h Vol: ${{ ex.trade_volume_24h_btc | number:'1.0-0' }} BTC</span>
+        </div>
+        <a [routerLink]="['/exchange', ex.id]" class="exchange-link">View Details →</a>
+      </div>
+    </div>
+    <ng-template #loadingTpl>
+      <div class="exchanges-loading">Loading exchanges...</div>
+    </ng-template>
+  </div>
+</section>

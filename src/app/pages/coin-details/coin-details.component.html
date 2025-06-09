@@ -1,0 +1,56 @@
+<body>
+      <button class="back-btn" (click)="goBack()">← Back</button>
+<section class="coin-details-section" *ngIf="!loading && coin; else loadingTpl">
+
+  <div class="coin-details-header">
+    <img [src]="coin.image?.large" [alt]="coin.name" class="coin-details-logo" />
+    <div>
+      <h1 class="coin-details-title">{{ coin.name }} ({{ coin.symbol | uppercase }})</h1>
+      <p class="coin-details-rank">Rank: {{ coin.market_cap_rank }}</p>
+      <a [href]="coin.links?.homepage[0]" target="_blank" class="coin-details-link">Official Site ↗</a>
+    </div>
+  </div>
+  <div class="coin-details-info">
+    <div class="coin-details-stats">
+      <div>
+        <span class="stat-label">Current Price</span>
+        <span class="stat-value">${{ coin.market_data?.current_price?.usd }}</span>
+      </div>
+      <div>
+        <span class="stat-label">Market Cap</span>
+        <span class="stat-value">${{ coin.market_data?.market_cap?.usd | number }}</span>
+      </div>
+      <div>
+        <span class="stat-label">24h Change</span>
+        <span class="stat-value" [ngClass]="{'up': coin.market_data?.price_change_percentage_24h >= 0, 'down': coin.market_data?.price_change_percentage_24h < 0}">
+          {{ coin.market_data?.price_change_percentage_24h }}%
+        </span>
+      </div>
+      <div>
+        <span class="stat-label">Total Volume</span>
+        <span class="stat-value">${{ coin.market_data?.total_volume?.usd | number }}</span>
+      </div>
+    </div>
+    <div class="coin-details-chart" *ngIf="chartData.length">
+      <canvas #coinChart></canvas>
+    </div>
+    <div class="coin-details-desc" *ngIf="coin.description?.en">
+      <h3>About</h3>
+      <p [innerHTML]="coin.description.en "></p>
+    </div>
+  </div>
+</section>
+<ng-template #loadingTpl
+><div class="loader">
+    <div class="load">
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__ball"></div>
+  </div>
+</div>
+</ng-template>
+
+</body>

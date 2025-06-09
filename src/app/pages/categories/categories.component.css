@@ -1,0 +1,111 @@
+:host {
+  background: #0a0a0a;
+  min-height: 100vh;
+  display: block;
+}
+
+.categories-section {
+  background: #0a0a0a;
+  min-height: 100vh;
+  padding: 3rem 0 2rem 0;
+}
+
+.back-btn {
+  background: #18171c;
+  color: #a259ff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-family: 'Clash Display', sans-serif;
+  cursor: pointer;
+  margin: 1rem 0 2rem 2rem;
+  transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+  background: #232323;
+  color: #fff;
+}
+
+.categories-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: #a259ff;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.categories-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.category-card {
+  background: #18171c;
+  border: 1px solid #232323;
+  border-radius: 18px;
+  padding: 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px #0007;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 32px #000a;
+}
+
+.category-info {
+  margin-bottom: 1rem;
+}
+
+.category-name {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem 0;
+}
+
+.category-id {
+  color: #bdbdbd;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.category-link {
+  color: #7ee787;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: color 0.2s;
+}
+.category-link:hover {
+  color: #fff;
+}
+
+.categories-loading {
+  color: #bdbdbd;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+@media (max-width: 700px) {
+  .categories-list {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 0 0.5rem;
+  }
+  .back-btn {
+    margin-left: 0.5rem;
+    width: 100%;
+    max-width: 120px;
+    display: block;
+  }
+}

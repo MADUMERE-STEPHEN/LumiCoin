@@ -1,0 +1,113 @@
+<app-hero></app-hero>
+<section class="trending-section" id="trending">
+  <div class="container">
+    <h2 class="trending-title"> Trending Coins</h2>
+    <div class="trending-cards" *ngIf="trendingCoins && trendingCoins.length > 0; else loading">
+      <div class="trending-card" *ngFor="let coin of trendingCoins">
+        <div class="card-content">
+          <div class="coin-header">
+            <img [src]="coin.item.thumb" [alt]="coin.item.name" class="coin-icon" />
+            <div class="coin-info">
+              <h3 class="coin-name">{{ coin.item.name }}</h3>
+              <p class="coin-symbol">{{ coin.item.symbol }}</p>
+            </div>
+          </div>
+          <div class="coin-details">
+            <p class="coin-detail">Rank: {{ coin.item.market_cap_rank || 'N/A' }}</p>
+            <a [routerLink]="['/coin', coin.item.id]" class="coin-link">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #loading>
+      <p class="loading-text">Loading trending data...</p>
+    </ng-template>
+  </div>
+</section>
+<section class="gainers-section">
+  <div class="container">
+    <h2 class="gainers-title">📈 Top Gainers</h2>
+    <div class="gainers-cards" *ngIf="topGainers && topGainers.length > 0; else noData">
+      <div class="gainers-card" *ngFor="let coin of topGainers">
+        <div class="gainers-card-content">
+          <div class="coin-header">
+            <img [src]="coin.image" [alt]="coin.name" class="coin-icon" />
+            <div class="coin-info">
+              <h3 class="coin-name">{{ coin.name }}</h3>
+              <p class="coin-symbol">{{ coin.symbol }}</p>
+            </div>
+          </div>
+          <div class="coin-details">
+            <p class="coin-detail">Price: ${{ coin.current_price }}</p>
+            <p class="coin-detail gain">+{{ coin.price_change_percentage_24h }}%</p>
+            <a [routerLink]="['/coin', coin.id]" class="coin-link">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noData>
+      <p class="no-data-text">No gainers data available.</p>
+    </ng-template>
+  </div>
+</section>
+<section class="losers-section">
+  <div class="container">
+    <h2 class="losers-title">🔻 Top Losers</h2>
+    <div class="losers-cards" *ngIf="topLosers && topLosers.length > 0; else noLosers">
+      <div class="losers-card" *ngFor="let coin of topLosers">
+        <div class="losers-card-content">
+          <div class="coin-header">
+            <img [src]="coin.image" [alt]="coin.name" class="coin-icon" />
+            <div class="coin-info">
+              <h3 class="coin-name">{{ coin.name }}</h3>
+              <p class="coin-symbol">{{ coin.symbol }}</p>
+            </div>
+          </div>
+          <div class="coin-details">
+            <p class="coin-detail">Price: ${{ coin.current_price }}</p>
+            <p class="coin-detail loss">{{ coin.price_change_percentage_24h }}%</p>
+            <a [routerLink]="['/coin', coin.id]" class="coin-link">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noLosers>
+      <p class="no-data-text">No losers data available.</p>
+    </ng-template>
+  </div>
+</section>
+
+<section class="global-market">
+  <div class="container">
+    <h2 class="global-market-title"> Global Market Overview</h2>
+    <div class="global-market-stats" *ngIf="globalMarketData?.data?.total_market_cap; else loadingStats"> 
+      <div class="stat-item">
+        <span class="stat-label">Total Market Cap:</span>
+        <span class="stat-value">${{ globalMarketData?.data?.total_market_cap?.usd | number }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Total Volume (24h):</span>
+        <span class="stat-value">${{ globalMarketData?.data?.total_volume?.usd | number }}</span>  
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Bitcoin Dominance:</span>
+        <span class="stat-value">{{ globalMarketData?.data?.market_cap_percentage?.btc | number: '1.0-2' }}%</span>
+      </div>  
+      <div class="stat-item">
+        <span class="stat-label">Ethereum Dominance:</span>
+        <span class="stat-value">{{ globalMarketData?.data?.market_cap_percentage?.eth | number: '1.0-2' }}%</span>    
+      </div>
+      <p>Total Coins: {{ globalMarketData?.data?.active_cryptocurrencies }}</p>
+    </div>
+    
+    <ng-template #loadingStats>
+      <p class="loading-text">Loading global market data...</p>
+    </ng-template>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+<section class="category-detail-section">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+  <div class="container">
+    <h2 class="category-detail-title">🗂️ {{ categoryName || 'Category' }} Coins</h2>
+    <div class="coins-list" *ngIf="coins?.length; else loadingTpl">
+      <div class="coin-card" *ngFor="let coin of coins">
+        <div class="coin-info">
+          <img [src]="coin.image" [alt]="coin.name" class="coin-icon" />
+          <div>
+            <h3 class="coin-name">{{ coin.name }}</h3>
+            <p class="coin-symbol">{{ coin.symbol | uppercase }}</p>
+          </div>
+        </div>
+        <div class="coin-stats">
+          <span class="coin-price">${{ coin.current_price | number:'1.2-2' }}</span>
+          <span class="coin-change" [ngClass]="{'up': coin.price_change_percentage_24h >= 0, 'down': coin.price_change_percentage_24h < 0}">
+            {{ coin.price_change_percentage_24h | number:'1.2-2' }}%
+          </span>
+        </div>
+        <a [routerLink]="['/coin', coin.id]" class="coin-link">View Details →</a>
+      </div>
+    </div>
+    <ng-template #loadingTpl>
+        <div class="loader">
+               <div class="load">
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__ball"></div>
+  </div>
+        </div>
+    </ng-template>
+  </div>
+</section>
