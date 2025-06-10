@@ -27,6 +27,7 @@
                 "output": "/"
               },
               "src/assets",
+              "src/_redirects",
               
   "src/robots.txt",
               "src/google843fed4fa194535a.html"
