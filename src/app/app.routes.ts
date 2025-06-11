@@ -6,7 +6,8 @@ import { CategoryDetailComponent } from './pages/category-detail/category-detail
 import { ExchangesComponent } from './pages/exchanges/exchanges.component';
 import { ExchangesDetailComponent } from './pages/exchanges-detail/exchanges-detail.component';
 import { SearchComponent } from './pages/search/search.component';
-
+import { NewsComponent } from './components/news/news.component';
+  
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'coin/:id', component: CoinDetailsComponent },
@@ -14,6 +15,8 @@ export const routes: Routes = [
   { path: 'categories/:id', component: CategoryDetailComponent },
   { path: 'exchanges', component: ExchangesComponent },
   { path: 'exchange/:id', component: ExchangesDetailComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchComponent },
+  {path: 'news', component:NewsComponent}
+  
   // ...add more as needed
 ];
