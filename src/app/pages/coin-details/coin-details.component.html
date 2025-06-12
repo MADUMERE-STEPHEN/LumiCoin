@@ -1,7 +1,7 @@
 <body>
-      <button class="back-btn" (click)="goBack()">← Back</button>
 <section class="coin-details-section" *ngIf="!loading && coin; else loadingTpl">
 
+      <button class="back-btn" (click)="goBack()">← Back</button>
   <div class="coin-details-header">
     <img [src]="coin.image?.large" [alt]="coin.name" class="coin-details-logo" />
     <div>

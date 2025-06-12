@@ -4,13 +4,13 @@ import { CryptoService } from '../../services/crypto.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterModule } from '@angular/router';
-import { AppComponent } from '../../app.component';
+import { RouterLink, RouterModule, Router } from '@angular/router';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeroComponent, CommonModule, FormsModule, RouterLink, RouterModule], // <-- REMOVE BrowserModule
+  imports: [HeroComponent, CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -18,23 +18,37 @@ export class HomeComponent implements OnInit {
   trendingCoins: any[] = [];
   searchTerm: string = '';
   filteredTrendingCoins: any[] = [];
+  alertMessage: string = '';
+  alertType: string = '';
+  topGainers: any[] = [];
+  topLosers: any[] = [];
+  globalMarketData: any = {};
 
-  constructor(private coinApi: CryptoService, private zone: NgZone, private appComponent: AppComponent) { }
-
-  
-handleError(error: any) {
-  if (error.status === 429) {
-    this.appComponent.showAlert('Too Many Requests. Please try again later.', 'error');
-  } else {
-    this.appComponent.showAlert('An error occurred. Please try again.', 'error');
+  closeAlert() {
+    this.alertMessage = '';
+    this.alertType = '';
   }
-}
+
+  constructor(
+    private coinApi: CryptoService,
+    private zone: NgZone,
+    private alertService: AlertService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
+    this.alertService.alert$.subscribe(alert => {
+      this.alertMessage = alert.message;
+      this.alertType = alert.type;
+      setTimeout(() => this.closeAlert(), 5000);
+    });
+
     // Fetch trending coins
     this.coinApi.getTrending().subscribe({
       next: (res: any) => {
         this.zone.run(() => {
           this.trendingCoins = res.coins || [];
+          this.filteredTrendingCoins = this.trendingCoins;
           console.log('Trending coins:', this.trendingCoins);
         });
       },
@@ -42,6 +56,11 @@ handleError(error: any) {
         this.zone.run(() => {
           console.error('Error fetching trending coins:', err);
           this.trendingCoins = [];
+          if (err.status === 429) {
+            this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+          } else {
+            this.alertService.showAlert('Failed to load trending coins.', 'error');
+          }
         });
       }
     });
@@ -58,28 +77,33 @@ handleError(error: any) {
         this.zone.run(() => {
           console.error('Error fetching top gainers:', err);
           this.topGainers = [];
+          if (err.status === 429) {
+            this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+          }
         });
       }
     });
 
+    // Fetch global market data
     this.coinApi.getGlobalMarketData().subscribe({
       next: (res: any) => {
         this.zone.run(() => {
           console.log('Global market data:', res);
           this.globalMarketData = res || {};
         });
-      }
-      ,
-      error: (err) => { 
+      },
+      error: (err) => {
         this.zone.run(() => {
           console.error('Error fetching global market data:', err);
           this.globalMarketData = {};
+          if (err.status === 429) {
+            this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+          }
         });
       }
     });
 
-
-    //fetch top losers
+    // Fetch top losers
     this.coinApi.getTopLosers().subscribe({
       next: (res: any) => {
         this.zone.run(() => {
@@ -91,6 +115,9 @@ handleError(error: any) {
         this.zone.run(() => {
           console.error('Error fetching top losers:', err);
           this.topLosers = [];
+          if (err.status === 429) {
+            this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+          }
         });
       }
     });
@@ -108,7 +135,7 @@ handleError(error: any) {
     }
   }
 
-  topGainers: any[] = [];
-  topLosers: any[] = [];
-  globalMarketData: any = {};
+  goToCoin(id: string) {
+    this.router.navigate(['/coin', id]);
+  }
 }

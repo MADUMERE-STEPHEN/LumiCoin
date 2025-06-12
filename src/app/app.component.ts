@@ -9,6 +9,7 @@ import { NewsComponent } from './components/news/news.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { AlertService } from './services/alert.service'; // adjust path as needed
 
 
 @Component({
@@ -22,7 +23,12 @@ import { Title, Meta } from '@angular/platform-browser';
 export class AppComponent implements  OnInit{
   title = 'LumiCoin';
 
-  constructor(private router: Router, private titles: Title, private meta: Meta) {
+  constructor(
+    private router: Router,
+    private titles: Title,
+    private meta: Meta,
+    private alertService: AlertService
+  ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -42,6 +48,11 @@ export class AppComponent implements  OnInit{
   { name: 'theme-color', content: '#0d0d0d' }
 ]);
 
+this.alertService.alert$.subscribe(alert => {
+      this.alertMessage = alert.message;
+      this.alertType = alert.type;
+      setTimeout(() => this.closeAlert(), 5000);
+    });
 }
     alertMessage: string = '';
   alertType: 'error' | 'info' = 'error';

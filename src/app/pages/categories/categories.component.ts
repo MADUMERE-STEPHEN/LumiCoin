@@ -12,9 +12,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 export class CategoriesComponent implements OnInit {
   categories = [
     { name: 'DeFi', category_id: 'decentralized-finance-defi', headerName: 'DeFi' },
-    { name: 'Exchange Tokens', category_id: 'exchange-tokens', headerName: 'Exchange Tokens' }, 
     { name: 'NFTs', category_id: 'non-fungible-tokens-nft', headerName: 'NFTs' },
-    { name: 'Smart Contract Platforms', category_id: 'smart-contract-platforms', headerName: 'Smart Contract Platforms' },
     { name: 'Gaming', category_id: 'gaming', headerName: 'Gaming' },
     { name: 'Metaverse', category_id: 'metaverse' , headerName: 'Metaverse' },
     { name: 'Layer 2', category_id: 'layer-2', headerName: 'Layer 2' },

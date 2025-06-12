@@ -17,8 +17,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: none; /* Remove starry background for pure black */
+  background: none;
   opacity: 0;
+  pointer-events: none;
 }
 
 .trending-title {
@@ -145,6 +146,79 @@
   margin-top: 3rem;
   position: relative;
   z-index: 1;
+}
+
+/* --- Simplified Table Styles --- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.coin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #18171c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px #0006;
+  font-size: 1.05rem;
+  min-width: 420px;
+}
+
+.coin-table th, .coin-table td {
+  padding: 0.9rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid #232323;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.coin-table th {
+  background: #232323;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-bottom: 2px solid #a259ff;
+}
+
+.coin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.coin-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #232323;
+  object-fit: contain;
+  box-shadow: 0 2px 8px #0004;
+}
+
+.gain {
+  color: #7ee787;
+  font-weight: 600;
+}
+.loss {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.coin-link {
+  color: #a259ff;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.coin-link:hover {
+  color: #fff;
+}
+
+.loading-text, .no-data-text {
+  color: #bdbdbd;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
 }
 
 /* Animations */
@@ -389,14 +463,37 @@
   font-size: 1.1rem;
 }
 
+/* Responsive: horizontal scroll for tables on small screens */
 @media (max-width: 700px) {
-  .global-market-stats {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.2rem 0.5rem;
+  .coin-table {
+    font-size: 0.97rem;
+    min-width: 420px;
   }
-  
+  .table-responsive {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Extra: Make table scrollable horizontally on small screens */
+@media (max-width: 500px) {
+  .table-responsive {
+    padding: 0;
+  }
+  .coin-table {
+    min-width: 350px;
+    font-size: 0.93rem;
+  }
+  .coin-table th, .coin-table td {
+    padding: 0.7rem 0.4rem;
+  }
+}
+
+/* Remove old card/grid styles for trending/gainers/losers/global-market if not using cards anymore */
+.trending-cards, .gainers-cards, .losers-cards, .trending-card, .gainers-card, .losers-card,
+.trending-card-info, .gainers-card-content, .losers-card-content,
+.global-market-stats, .stat-item, .stat-label, .stat-value {
+  all: unset;
+  display: revert;
 }
 
 

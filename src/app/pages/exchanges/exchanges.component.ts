@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptoService } from '../../services/crypto.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-exchanges',
@@ -14,7 +14,7 @@ export class ExchangesComponent implements OnInit {
   exchanges: any[] = [];
   headerName: string = 'Exchanges';
 
-  constructor(private cryptoService: CryptoService) {}
+  constructor(private cryptoService: CryptoService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchExchanges();
@@ -34,5 +34,9 @@ export class ExchangesComponent implements OnInit {
 
   goBack(): void {
     window.history.back();
+  }
+
+  goToExchange(id: string) {
+    this.router.navigate(['/exchange', id]);
   }
 }

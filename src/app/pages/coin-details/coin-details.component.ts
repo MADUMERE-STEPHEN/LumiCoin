@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CryptoService } from '../../services/crypto.service';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-coin-details',
@@ -23,7 +24,8 @@ export class CoinDetailsComponent implements OnInit, AfterViewChecked {
   constructor(
     private route: ActivatedRoute,
     private crypto: CryptoService,
-    private location: Location
+    private location: Location,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -36,9 +38,14 @@ export class CoinDetailsComponent implements OnInit, AfterViewChecked {
             this.coin = data;
             this.loading = false;
           },
-          error: () => {
+          error: (err) => {
             this.coin = null;
             this.loading = false;
+            if (err.status === 429) {
+              this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+            } else {
+              this.alertService.showAlert('Something went wrong!', 'error');
+            }
           }
         });
         // Fetch chart data (last 7 days)
@@ -48,8 +55,26 @@ export class CoinDetailsComponent implements OnInit, AfterViewChecked {
               new Date(p[0]).toLocaleDateString()
             );
             this.chartData = data.prices.map((p: any) => p[1]);
+          },
+          error: (err) => {
+            if (err.status === 429) {
+              this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+            } else {
+              this.alertService.showAlert('Failed to load chart data.', 'error');
+            }
           }
         });
+      }
+    });
+
+    this.crypto.getTrending().subscribe({
+      next: (res) => { /* ... */ },
+      error: (err) => {
+        if (err.status === 429) {
+          this.alertService.showAlert('Too Many Requests. Please wait and try again.', 'error');
+        } else {
+          this.alertService.showAlert('Failed to load trending coins.', 'error');
+        }
       }
     });
   }

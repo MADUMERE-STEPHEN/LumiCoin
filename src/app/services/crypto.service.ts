@@ -169,4 +169,14 @@ export class CryptoService {
       }
     });
   }
+
+  handleError(err: any) {
+    if (err.status === 429) {
+      // Handle too many requests error
+      return 'Too Many Requests. Please wait and try again.';
+    } else {
+      // Handle other errors
+      return 'An error occurred. Please try again.';
+    }
+  }
 }
