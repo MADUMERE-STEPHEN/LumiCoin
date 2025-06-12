@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let coin of trendingCoins" (click)="goToCoin(coin.item.id)" style="cursor:pointer;">
+          <tr *ngFor="let coin of trendingCoins" (click)="goToCoin(coin.item.id)" class="clickable-row">
             <td><img [src]="coin.item.thumb" [alt]="coin.item.name" class="coin-icon" /></td>
             <td>{{ coin.item.name }}</td>
             <td>{{ coin.item.symbol }}</td>
@@ -45,7 +45,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let coin of topGainers" (click)="goToCoin(coin.id)" style="cursor:pointer;">
+          <tr *ngFor="let coin of topGainers" (click)="goToCoin(coin.id)" class="clickable-row">
             <td><img [src]="coin.image" [alt]="coin.name" class="coin-icon" /></td>
             <td>{{ coin.name }}</td>
             <td>{{ coin.symbol | uppercase }}</td>
@@ -77,7 +77,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let coin of topLosers" (click)="goToCoin(coin.id)" style="cursor:pointer;">
+          <tr *ngFor="let coin of topLosers" (click)="goToCoin(coin.id)" class="clickable-row">
             <td><img [src]="coin.image" [alt]="coin.name" class="coin-icon" /></td>
             <td>{{ coin.name }}</td>
             <td>{{ coin.symbol | uppercase }}</td>
@@ -128,3 +128,14 @@
     </ng-template>
   </div>
 </section>
+
+<style>
+
+.coin-table tr.clickable-row td:nth-child(2) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #a259ff;
+  cursor: pointer;
+}
+</style>

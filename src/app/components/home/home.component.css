@@ -61,6 +61,9 @@
 .card-content {
   padding: 2rem;
   display: flex;
+
+  
+  text-decoration: underline;
   flex-direction: column;
   gap: 1.5rem;
 }
@@ -68,6 +71,9 @@
 .coin-header {
   display: flex;
   align-items: center;
+
+  
+  text-decoration: underline;
   gap: 1.5rem;
 }
 
@@ -494,6 +500,15 @@
 .global-market-stats, .stat-item, .stat-label, .stat-value {
   all: unset;
   display: revert;
+}
+
+/* Add this to make all table cell content underlined in clickable rows */
+.coin-table tr[style*="cursor:pointer"] td,
+.coin-table tr.table-row-link td {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #a259ff;
 }
 
 
